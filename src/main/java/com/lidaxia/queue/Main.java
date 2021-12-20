@@ -28,10 +28,12 @@ public class Main {
         int opCount = 100000;
         ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
         LoopQueue<Integer> loopQueue = new LoopQueue<>();
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
 
         System.out.println("ArrayQueue, time:" + testQueue(arrayQueue, opCount) + "s");
 
         System.out.println("LoopQueue, time:" + testQueue(loopQueue, opCount) + "s");
 
+        System.out.println("LinkedListQueue, time:" + testQueue(linkedListQueue, opCount) + "s");
     }
 }
