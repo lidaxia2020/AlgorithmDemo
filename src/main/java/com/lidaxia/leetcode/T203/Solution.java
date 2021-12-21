@@ -1,8 +1,10 @@
 package com.lidaxia.leetcode.T203;
 
+import java.util.List;
+
 /**
- *   移除链表元素
- *
+ * 移除链表元素
+ * <p>
  * Definition for singly-linked list.
  * public class ListNode {
  * int val;
@@ -61,5 +63,20 @@ class Solution {
         }
 
         return dummyHead.next;
+    }
+
+    /**
+     * 递归
+     *
+     * @param head
+     * @param val
+     * @return
+     */
+    public ListNode removeElements3(ListNode head, int val) {
+        if (head == null)
+            return null;
+
+        head.next = removeElements3(head.next, val);
+        return head.val == val ? head.next : head;
     }
 }
