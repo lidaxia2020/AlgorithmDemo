@@ -16,16 +16,22 @@ public class Main {
             bst.add(num);
         }
 
-//        System.out.println(bst);
 
-        bst.preOrder();
+        System.out.println(bst);
+
+//        bst.preOrder();
+//        System.out.println();
+//        bst.preOrderNR();
+//        System.out.println();
+//        bst.inOrder();
+//        System.out.println();
+//        bst.postOrder();
+//        System.out.println();
+//        bst.levelOrder();
+
         System.out.println();
-        bst.preOrderNR();
+        System.out.println(bst.removeMin());
         System.out.println();
-        bst.inOrder();
-        System.out.println();
-        bst.postOrder();
-        System.out.println();
-        bst.levelOrder();
+        System.out.println(bst.removeMax());
     }
 }
