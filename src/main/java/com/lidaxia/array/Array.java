@@ -25,6 +25,13 @@ public class Array<E> {
         this(10);
     }
 
+    public Array(E[] arr) {
+        this.data = (E[]) new Object[arr.length];
+        this.size = arr.length;
+        for (int i = 0; i < arr.length; i++)
+            this.data[i] = arr[i];
+    }
+
     /**
      * 获取数组中的个数
      *
@@ -116,11 +123,11 @@ public class Array<E> {
         return data[index];
     }
 
-    public E getLast(){
-        return get(size -1);
+    public E getLast() {
+        return get(size - 1);
     }
 
-    public E getFirst(){
+    public E getFirst() {
         return get(0);
     }
 
@@ -207,6 +214,14 @@ public class Array<E> {
         int index = find(value);
         if (index != -1)
             remove(index);
+    }
+
+    public void swap(int i, int j) {
+        if (i < 0 || i >= size || j < 0 || j >= size)
+            throw new IllegalArgumentException("Index is illegal.");
+        E temp = data[i];
+        data[i] = data[j];
+        data[j] = temp;
     }
 
     @Override
