@@ -1,53 +1,50 @@
-package com.lidaxia.trie;
+package com.lidaxia.leetcode.T208;
 
 import java.util.HashMap;
 
 /**
- * 208. 实现 Trie (前缀树)
  * @author lidaxia
  * @version 1.0
- * @date 2021/12/30 20:39
+ * @date 2022/1/1 16:13
  */
-public class Trie {
+class Trie {
 
     private Node root;
-    private int size;
 
     public Trie() {
-        this.root = new Node();
-        this.size = 0;
+        root = new Node();
     }
 
-    public void add(String word) {
+    public void insert(String word) {
         Node cur = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (cur.next.get(c) == null)
+            if (cur.next.get(c) == null) {
                 cur.next.put(c, new Node());
+            }
             cur = cur.next.get(c);
         }
-        /**
-         * 之前无该单词
-         */
+
         if (!cur.isWord) {
             cur.isWord = true;
-            size++;
         }
+
     }
 
-    public boolean contains(String word) {
+    public boolean search(String word) {
         Node cur = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (cur.next.get(c) == null)
+            if (cur.next.get(c) == null) {
                 return false;
+            }
             cur = cur.next.get(c);
         }
 
         return cur.isWord;
     }
 
-    public boolean isPrefix(String prefix) {
+    public boolean startsWith(String prefix) {
         Node cur = root;
         for (int i = 0; i < prefix.length(); i++) {
             char c = prefix.charAt(i);
@@ -56,13 +53,9 @@ public class Trie {
             }
             cur = cur.next.get(c);
         }
+
         return true;
     }
-
-    public int getSize() {
-        return size;
-    }
-
 
     private class Node {
         public boolean isWord;
@@ -81,3 +74,11 @@ public class Trie {
     }
 
 }
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
