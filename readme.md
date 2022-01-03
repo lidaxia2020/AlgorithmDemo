@@ -25,6 +25,12 @@
 - 需要开辟4*n的空间存储n个元素
 
 # 树状数组（Binary Index Tree） -->区间操作
+
 # 区间相关---》Range Minimum Query RMQ
 
 # Trie 字典树 前缀树
+
+# 并查集 Union Find
+
+- 处理连接问题和路径问题
+- 
