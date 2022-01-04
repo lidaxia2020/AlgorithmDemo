@@ -44,18 +44,18 @@ public class ArrayQueue<E> implements Queue<E> {
         return array.isEmpty();
     }
 
-    public int getCapacity(){
+    public int getCapacity() {
         return array.getCapacity();
     }
 
     @Override
     public String toString() {
-        StringBuilder sb =new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.append("ArrayQueue:");
         sb.append("front [");
-        for (int i =0;i<array.getSize();i++){
+        for (int i = 0; i < array.getSize(); i++) {
             sb.append(array.get(i));
-            if (i != array.getSize()-1)
+            if (i != array.getSize() - 1)
                 sb.append(",");
         }
         sb.append("] tail");
