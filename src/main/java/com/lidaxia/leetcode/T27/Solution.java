@@ -1,6 +1,5 @@
 package com.lidaxia.leetcode.T27;
 
-import java.util.Arrays;
 
 /**
  * 27. 移除元素
