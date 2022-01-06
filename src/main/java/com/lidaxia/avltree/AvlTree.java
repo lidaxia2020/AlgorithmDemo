@@ -46,13 +46,25 @@ public class AvlTree<K extends Comparable<K>, V> {
             ;
 
         // 平衡维护
-        // 右旋转
+        // 右旋转  LL
         if (balanceFactor > 1 && getBalanceFactor(node.left) >= 0)
             return rightRotate(node);
 
-        // 左旋转
+        // 左旋转  RR
         if (balanceFactor < -1 && getBalanceFactor(node.right) <= 0)
             return leftRotate(node);
+
+        // LR
+        if (balanceFactor > 1 && getBalanceFactor(node.left) < 0) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+
+        // RL
+        if (balanceFactor < -1 && getBalanceFactor(node.right) > 0) {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
 
         return node;
     }
@@ -153,37 +165,69 @@ public class AvlTree<K extends Comparable<K>, V> {
     private Node remove(Node node, K key) {
         if (node == null)
             return null;
+
+        Node retNode;
         if (key.compareTo(node.key) < 0) {
             node.left = remove(node.left, key);
-            return node;
+            retNode = node;
         } else if (key.compareTo(node.key) > 0) {
             node.right = remove(node.right, key);
-            return node;
+            retNode = node;
         } else {
             if (node.left == null) {
                 Node rightNode = node.right;
                 node.right = null;
                 size--;
-                return rightNode;
-            }
-
-            if (node.right == null) {
+                retNode = rightNode;
+            } else if (node.right == null) {
                 Node leftNode = node.left;
                 node.left = null;
                 size--;
-                return leftNode;
+                retNode = leftNode;
+            } else {
+                /**
+                 * 待删除节点均不为空
+                 */
+                Node successor = minimum(node.right);
+                successor.right = remove(node.right, successor.key);
+                successor.left = node.left;
+                node.left = node.right = null;
+                retNode = successor;
             }
-
-            /**
-             * 待删除节点均不为空
-             */
-            Node successor = minimum(node.right);
-            successor.right = removeMin(node.right);
-            successor.left = node.left;
-            node.left = node.right = null;
-            return successor;
         }
 
+        if (retNode == null) {
+            return null;
+        }
+
+        // 更新height
+        retNode.height = 1 + Math.max(getHeight(retNode.left), getHeight(retNode.right));
+
+        // 计算平衡因子
+        int balanceFactor = getBalanceFactor(retNode);
+
+        // 平衡维护
+        // 右旋转  LL
+        if (balanceFactor > 1 && getBalanceFactor(retNode.left) >= 0)
+            return rightRotate(retNode);
+
+        // 左旋转  RR
+        if (balanceFactor < -1 && getBalanceFactor(retNode.right) <= 0)
+            return leftRotate(retNode);
+
+        // LR
+        if (balanceFactor > 1 && getBalanceFactor(retNode.left) < 0) {
+            retNode.left = leftRotate(retNode.left);
+            return rightRotate(retNode);
+        }
+
+        // RL
+        if (balanceFactor < -1 && getBalanceFactor(retNode.right) > 0) {
+            retNode.right = rightRotate(retNode.right);
+            return leftRotate(retNode);
+        }
+
+        return retNode;
     }
 
     private Node minimum(Node node) {
