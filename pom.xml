@@ -27,7 +27,6 @@
         <yasson-version>1.0.1</yasson-version>
 	</properties>
     <dependencies>
-        <!-- Spring -->
 
 
     </dependencies>
