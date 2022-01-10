@@ -15,15 +15,17 @@ public class SelectionSort implements IArraySort {
     public int[] sort(int[] sourceArray) {
 
         for (int i = 0; i < sourceArray.length; i++) {
-            int temp = 0;
+            int temp = i;
             for (int j = i + 1; j < sourceArray.length; j++) {
                 if (sourceArray[j] < sourceArray[temp])
                     temp = j;
             }
 
-            int t = sourceArray[i];
-            sourceArray[i] = sourceArray[temp];
-            sourceArray[temp] = t;
+            if (i != temp){
+                int t = sourceArray[i];
+                sourceArray[i] = sourceArray[temp];
+                sourceArray[temp] = t;
+            }
         }
 
         return sourceArray;
