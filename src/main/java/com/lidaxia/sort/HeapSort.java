@@ -3,7 +3,7 @@ package com.lidaxia.sort;
 /**
  * 堆排序
  *
- * @author lijiannan
+ * @author lidaxia
  * @desc
  * @date 2022/1/11 11:47（
  */
