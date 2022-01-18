@@ -14,24 +14,58 @@ import java.util.Map;
  */
 public class Solution {
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    /**
+     * map 存储
+     *
+     * @param head
+     * @param n
+     * @return
+     */
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null)
             return null;
 
         Map<Integer, ListNode> listNodeMap = new HashMap<>();
         int num = 0;
         ListNode temp = head;
-        ListNode t = head;
         while (temp != null) {
-            ListNode listNode =
+            ListNode listNode = temp;
 
-            listNodeMap.put(num++, listNode.next);
+            listNodeMap.put(num++, listNode);
             temp = temp.next;
         }
+        if (listNodeMap.size() == n) {
+            return head.next;
+        }
 
-        return listNodeMap.get(listNodeMap.size() - n);
+        ListNode t = listNodeMap.get(listNodeMap.size() - n - 1);
+        t.next = t.next.next;
+        return head;
 
     }
 
+    public static ListNode removeNthFromEnd1(ListNode head, int n) {
+        ListNode dump = new ListNode(0, head);
+        ListNode p = dump;
+        ListNode q = dump;
+        while (n > 0) {
+            q = q.next;
+            n--;
+        }
+        ListNode pre = null;
+        while (q != null) {
+            pre = p;
+            p = p.next;
+            q = q.next;
+        }
+        pre.next = pre.next.next;
+        return dump.next;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4, 5};
+        ListNode head = ListNode.listNode(nums);
+        removeNthFromEnd1(head, 2);
+    }
 
 }
