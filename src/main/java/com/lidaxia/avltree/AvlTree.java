@@ -42,8 +42,6 @@ public class AvlTree<K extends Comparable<K>, V> {
 
         // 计算平衡因子
         int balanceFactor = getBalanceFactor(node);
-        if (Math.abs(balanceFactor) > 1)
-            ;
 
         // 平衡维护
         // 右旋转  LL
