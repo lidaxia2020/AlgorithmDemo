@@ -149,7 +149,17 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        System.out.println(longestPalindrome1("aaabbacd"));
-        System.out.println(longestPalindrome2("aaabbacd"));
+        String a = "Programming";
+        String b = new String("Programming");
+        String c = "Program" + "ming";
+
+        System.out.println(a == b);
+        System.out.println(a == c);
+        System.out.println(a.equals(b));
+        System.out.println(a.equals(c));
+        System.out.println(a.intern() == b.intern());
+
+        System.out.println(longestPalindrome1("abcd"));
+        System.out.println(longestPalindrome2("abcd"));
     }
 }
