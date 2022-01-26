@@ -1,5 +1,9 @@
 package com.lidaxia;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author lidaxia
  * @version 1.0
@@ -22,5 +26,24 @@ public class Main {
         System.out.println(integer);
         System.out.println(integer + "");
 
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            list.add(i + "");
+            if (list.size() > 10) {
+                clearList(list);
+            }
+            System.out.println("clearList+++++" + list.size());
+        }
+
+    }
+
+    private static void clearList(List<String> list) {
+        System.out.println("list = " + list.hashCode());
+        List<String> list1=list.stream().filter(x->x.equals("1")).collect(Collectors.toList());
+        list=list.stream().filter(x->x.equals("1")).collect(Collectors.toList());
+        System.out.println("list = " + list.hashCode());
+        System.out.println("clearList==============" + list1.size());
+        System.out.println("clearList==============" + list.size());
+        list.clear();
     }
 }
